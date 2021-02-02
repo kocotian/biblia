@@ -1,25 +1,25 @@
 
 PREFIX = /usr/local
 
-vul: vul.sh vul.awk vul.tsv
-	cat vul.sh > $@
+biblia: biblia.sh biblia.awk biblia.tsv
+	cat biblia.sh > $@
 	echo 'exit 0' >> $@
 	echo "#EOF" >> $@
-	tar cz vul.awk vul.tsv >> $@
+	tar cz biblia.awk biblia.tsv >> $@
 	chmod +x $@
 
-test: vul.sh
-	shellcheck -s sh vul.sh
+test: biblia.sh
+	shellcheck -s sh biblia.sh
 
 clean:
-	rm -f vul
+	rm -f biblia
 
-install: vul
+install: biblia
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f vul $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/vul
+	cp -f biblia $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/biblia
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/vul
+	rm -f $(DESTDIR)$(PREFIX)/bin/biblia
 
 .PHONY: test clean install uninstall
